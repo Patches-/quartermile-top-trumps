@@ -21,6 +21,9 @@ Quiz.prototype.answer = function(arrow) {
 	if(document.getElementById('quartermile1').innerHTML > this.cars[this.carsSeen].quartermile){
 		var higher = false;
 	}
+	if(arrow = higher){
+		console.log('correct!');
+	}
 	console.log(higher);
 }
 
@@ -28,9 +31,19 @@ Quiz.prototype.getCurrentPlayer = function(){
 	return this.players[this.currentRound];
 }
 
-Quiz.prototype.getCar = function() {
+Quiz.prototype.fetchCar = function(){
+	var carToReturn = this.getCar();
 	this.carsSeen++;
+	return carToReturn;
+}
+
+Quiz.prototype.getCar = function() {
 	return this.cars[this.carOrder[this.carsSeen]];
+}
+
+
+Quiz.prototype.getAnswer = function() {
+
 }
 
 Quiz.prototype.addPlayers = function(players) {
@@ -38,14 +51,13 @@ Quiz.prototype.addPlayers = function(players) {
 }
 
 Quiz.prototype.roundStarting = function() {
-	console.log('this.carsSeen % this.carsPerRound = ' + this.carsSeen % this.carsPerRound)
-	if((this.carsSeen % this.carsPerRound) == 0){
-		this.currentRound++;
+	console.log('this.carsSeen % this.carsPerRound = ' + this.carsSeen % this.carsPerRound);
+	if(!document.getElementById('quiz-header').classList.contains('player') && (this.carsSeen % this.carsPerRound) == 0){
 		return true;
 	}
 	return false;
 }
 
 Quiz.prototype.hasEnded = function() {
-    return this.carsSeen >= this.cars.length - 1;
+    return this.carsSeen >= this.cars.length;
 };

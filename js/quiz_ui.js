@@ -8,7 +8,7 @@ var QuizUI = {
 			this.displayPlayer();
 			this.inputHandler();
 		} else {
-			this.displayCars();
+			this.displayCar();
 			this.displayHeader();
 			this.inputHandler();
 		}
@@ -18,10 +18,15 @@ var QuizUI = {
 		this.clearCar(2);
 		console.log('new round');
 		this.populateById('quiz-header', quiz.getCurrentPlayer().name);
+		document.getElementById('quiz-header').classList.add('player');
 	},
-	displayCars: function() {
-		for (var i = 1; i < 3; i++) {
-			this.populateCar(i);
+	displayCar: function() {
+		if(document.getElementById('name1').innerHTML === ''){
+			this.populateCar(1);
+			this.populateCar(2, true);
+		} else {
+			this.moveCarLeft();
+			this.populateCar(2, true);
 		}
 	},
 	displayHeader: function(){
@@ -31,15 +36,19 @@ var QuizUI = {
 		var element = document.getElementById(id);
 		element.innerHTML = content;
 	},
-	populateCar: function(i) {
+	populateCar: function(id, hide = false) {
 		console.log('getCar');
-		var car = quiz.getCar();
-		this.populateById('name' + i, car.name );
-		this.populateById('image' + i, car.img );
-		if (i == 2) {
-			car.quartermile = '??';
+		var car = quiz.fetchCar();
+		this.populateById('name' + id, car.name );
+		this.populateById('image' + id, car.img );
+		var qm = car.quartermile;
+		if (hide) {
+			qm = '??';
 		}
-		this.populateById('quartermile' + i, car.quartermile );
+		this.populateById('quartermile' + id, qm );
+	},
+	moveCarLeft: function() {
+		this.clearCar(2);
 	},
 	clearCar: function(id){
 		this.populateById('name' + id, '' );
@@ -51,7 +60,6 @@ var QuizUI = {
 
 		function checkKey(e) {
 			e = e || window.event;
-			console.log(e.keyCode);
 			if (e.keyCode == '38') {
 			    var arrow = 'up';
 			}

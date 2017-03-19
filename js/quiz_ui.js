@@ -1,6 +1,9 @@
 "use strict";
 
 var QuizUI = {
+	startRound: function() {
+
+	},
 	displayNextComparison: function() {
 		if (quiz.hasEnded()){
 			this.displayLeaderboard();
@@ -23,6 +26,7 @@ var QuizUI = {
 		element.innerHTML = content;
 	},
 	populateCar: function(i) {
+		console.log('getCar');
 		var car = quiz.getCar();
 		this.populateById('name' + i, car.name );
 		this.populateById('image' + i, car.img );
@@ -37,14 +41,19 @@ var QuizUI = {
 		function checkKey(e) {
 			e = e || window.event;
 			if (e.keyCode == '38') {
-			    console.log('up arrow');
+			    var arrow = 'up';
 			}
 			else if (e.keyCode == '40') {
-			    console.log('down arrow');
+			    var arrow = 'down';
+			}
+			if (arrow){
+				quiz.answer(arrow);
+				QuizUI.displayNextComparison();
 			}
 		}
 	},
 	displayLeaderboard: function() {
-
+		document.getElementById('compare-row').classList.add('hide');
+		this.populateById('quiz-header', 'Finished!');
 	}
 }

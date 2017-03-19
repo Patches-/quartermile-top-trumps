@@ -15,6 +15,10 @@ function Quiz(cars, players){
 	});
 }
 
+Quiz.prototype.answer = function(arrow) {
+	
+}
+
 Quiz.prototype.getCar = function() {
 	this.carsSeen++;
 	return this.cars[this.carOrder[this.carsSeen]];
@@ -25,5 +29,5 @@ Quiz.prototype.addPlayers = function(players) {
 }
 
 Quiz.prototype.hasEnded = function() {
-    return this.carsSeen >= this.cars.length;
+    return this.carsSeen >= this.cars.length - 2;
 };

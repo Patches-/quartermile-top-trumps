@@ -1,17 +1,23 @@
 "use strict";
 
 var QuizUI = {
-	startRound: function() {
-
-	},
 	displayNextComparison: function() {
-		if (quiz.hasEnded()){
+		if (quiz.hasEnded()) {
 			this.displayLeaderboard();
+		} else if (quiz.roundStarting()) {
+			this.displayPlayer();
+			this.inputHandler();
 		} else {
 			this.displayCars();
 			this.displayHeader();
 			this.inputHandler();
 		}
+	},
+	displayPlayer: function() {
+		this.clearCar(1);
+		this.clearCar(2);
+		console.log('new round');
+		this.populateById('quiz-header', quiz.getCurrentPlayer().name);
 	},
 	displayCars: function() {
 		for (var i = 1; i < 3; i++) {
@@ -35,16 +41,25 @@ var QuizUI = {
 		}
 		this.populateById('quartermile' + i, car.quartermile );
 	},
+	clearCar: function(id){
+		this.populateById('name' + id, '' );
+		this.populateById('image' + id, '' );
+		this.populateById('quartermile' + id, '' );
+	},
 	inputHandler: function (argument) {
 		document.onkeydown = checkKey;
 
 		function checkKey(e) {
 			e = e || window.event;
+			console.log(e.keyCode);
 			if (e.keyCode == '38') {
 			    var arrow = 'up';
 			}
 			else if (e.keyCode == '40') {
 			    var arrow = 'down';
+			}
+			else if (e.keyCode == '13') {
+				QuizUI.displayNextComparison();
 			}
 			if (arrow){
 				quiz.answer(arrow);

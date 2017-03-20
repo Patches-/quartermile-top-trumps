@@ -20,26 +20,27 @@ function Quiz(cars, players){
 
 Quiz.prototype.answer = function(arrow) {
 	this.showAnswer = true;
-	console.log(this.hiddenqm);
 	var higher = 's';
 	if(document.getElementById('quartermile1').innerHTML > this.hiddenqm){
 		var higher = 'f';
 	}
-	console.log(higher);
+	var message = '';
 	if(arrow == higher){
-		console.log('correct!');
+		message = '<h2>CORRECT! Press Enter to continue.</h2>';
 		this.updateScore();
+	} else {
+		message = '<h2>FALSE! Press Enter to continue.</h2>';
 	}
-	
+	document.getElementById('quiz-header').innerHTML = message;
 	QuizUI.populateById('quartermile2', this.hiddenqm);
 }
 
-Quiz.prototype.getCurrentPlayer = function(){
+Quiz.prototype.getPlayer = function(){
 	return this.players[this.currentRound];
 }
 
 Quiz.prototype.updateScore = function() {
-	this.getCurrentPlayer().score++;
+	this.getPlayer().score++;
 }
 
 Quiz.prototype.fetchCar = function(){

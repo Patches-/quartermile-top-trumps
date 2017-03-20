@@ -18,7 +18,7 @@ var QuizUI = {
 		this.clearCar(1);
 		this.clearCar(2);
 		console.log('new round');
-		this.populateById('quiz-header', quiz.getCurrentPlayer().name);
+		this.populateById('quiz-header', '<h2>Get ready ' + quiz.getPlayer().name + '</h2>');
 		this.populateById('quiz-info', 'Press Enter To Continue');
 		document.getElementById('quiz-header').classList.add('player');
 	},
@@ -33,7 +33,7 @@ var QuizUI = {
 		}
 	},
 	displayHeader: function(){
-		this.populateById('quiz-header', 'Is the car on the right Faster or Slower?');
+		this.populateById('quiz-header', '<h2>Is the car on the right Faster or Slower?</h2>');
 		this.populateById('quiz-info', 'Press Up for faster or Down for slower');
 	},
 	populateById: function(id, content) {
@@ -89,7 +89,20 @@ var QuizUI = {
 	},
 	displayLeaderboard: function() {
 		document.getElementById('compare-row').classList.add('hide');
-		this.populateById('quiz-header', 'Finished!');
+		this.populateById('quiz-header', '<h2>Finished!</h2>');
 		this.populateById('quiz-info', '');
+		var lb = document.getElementById('lb-body');
+
+		for (var i = 0; i < quiz.players.length; i++) {
+			var player = quiz.players[i];
+			console.log(player);
+			var row = lb.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			cell1.innerHTML = player.name;
+			cell2.innerHTML = player.score;
+		}
+		document.getElementById('leaderboard').classList.remove('hide');
+
 	}
 }

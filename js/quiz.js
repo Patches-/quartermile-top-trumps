@@ -24,18 +24,24 @@ Quiz.prototype.answer = function(arrow) {
 	}
 	this.showAnswer = true;
 	console.log(this.hiddenqm);
-	var higher = false;
+	var higher = 's';
 	if(document.getElementById('quartermile1').innerHTML > this.hiddenqm){
-		var higher = true;
+		var higher = 's';
 	}
-	if(arrow = higher){
+	if(arrow == higher){
 		console.log('correct!');
-		QuizUI.populateById('quartermile2', this.hiddenqm);
+		this.updateScore();
 	}
+	
+	QuizUI.populateById('quartermile2', this.hiddenqm);
 }
 
 Quiz.prototype.getCurrentPlayer = function(){
 	return this.players[this.currentRound];
+}
+
+Quiz.prototype.updateScore = function() {
+	this.getCurrentPlayer().score++;
 }
 
 Quiz.prototype.fetchCar = function(){

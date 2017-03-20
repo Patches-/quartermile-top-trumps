@@ -33,7 +33,7 @@ var QuizUI = {
 		}
 	},
 	displayHeader: function(){
-		this.populateById('quiz-header', 'Faster or Slower?');
+		this.populateById('quiz-header', 'Is the car on the right Faster or Slower?');
 		this.populateById('quiz-info', 'Press Up for faster or Down for slower');
 	},
 	populateById: function(id, content) {
@@ -53,6 +53,7 @@ var QuizUI = {
 		this.populateById('quartermile' + id, qm );
 	},
 	moveCarLeft: function() {
+		console.log('moved car left');
 		this.clearCar(1);
 		this.populateById('name1', document.getElementById('name2').innerHTML);
 		this.populateById('image1', document.getElementById('image2').innerHTML);

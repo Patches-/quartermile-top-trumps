@@ -19,9 +19,6 @@ function Quiz(cars, players){
 }
 
 Quiz.prototype.answer = function(arrow) {
-	if(this.hasEnded()){
-		return;
-	}
 	this.showAnswer = true;
 	console.log(this.hiddenqm);
 	var higher = 's';

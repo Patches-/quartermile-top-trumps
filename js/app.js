@@ -4,7 +4,7 @@ var nameForm = document.getElementById("player-names");
 
 var cars = [
 	new Car("Nissan Skyline GTR", "gtr.png", 10.8),
-	new Car("Porsche 911 Turbo S", "911.jpg", 10.5),
+	new Car("Porsche 911 Turbo S", "911.jpg", 10.55),
 	new Car("Bugatti Veyron", "veyron.jpg", 10.175),
 	new Car("McLaren 650s", "650s.jpg", 10.5),
 	new Car("Toyota Supra", "supra.jpg", 10),

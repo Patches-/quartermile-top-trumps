@@ -52,7 +52,11 @@ var QuizUI = {
 		this.populateById('quartermile' + id, qm );
 	},
 	moveCarLeft: function() {
-		this.clearCar(2);
+		this.clearCar(1);
+		this.populateById('name1', document.getElementById('name2').innerHTML);
+		this.populateById('image1', document.getElementById('image2').innerHTML);
+		this.populateById('quartermile1', quiz.hiddenqm);
+
 	},
 	clearCar: function(id){
 		this.populateById('name' + id, '' );

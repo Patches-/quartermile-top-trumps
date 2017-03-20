@@ -23,11 +23,6 @@ Quiz.prototype.answer = function(arrow) {
 		return;
 	}
 	this.showAnswer = true;
-	if (arrow == 'f') {
-		arrow = true;
-	} else {
-		arrow = false;
-	}
 	console.log(this.hiddenqm);
 	var higher = false;
 	if(document.getElementById('quartermile1').innerHTML > this.hiddenqm){
@@ -44,6 +39,7 @@ Quiz.prototype.getCurrentPlayer = function(){
 }
 
 Quiz.prototype.fetchCar = function(){
+	this.showAnswer = false;
 	var carToReturn = this.getCar();
 	this.carsSeen++;
 	return carToReturn;

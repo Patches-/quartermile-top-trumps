@@ -71,7 +71,9 @@ var QuizUI = {
 			    var arrow = 's';
 			}
 			else if (e.keyCode == '13') {
-				QuizUI.displayNextComparison();
+				if(quiz.showAnswer || document.getElementById('quiz-header').classList.contains('player')){
+					QuizUI.displayNextComparison();
+				}
 			}
 			if (arrow){
 				if(!document.getElementById('quiz-header').classList.contains('player')){

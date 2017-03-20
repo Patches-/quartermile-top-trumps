@@ -26,8 +26,9 @@ Quiz.prototype.answer = function(arrow) {
 	console.log(this.hiddenqm);
 	var higher = 's';
 	if(document.getElementById('quartermile1').innerHTML > this.hiddenqm){
-		var higher = 's';
+		var higher = 'f';
 	}
+	console.log(higher);
 	if(arrow == higher){
 		console.log('correct!');
 		this.updateScore();

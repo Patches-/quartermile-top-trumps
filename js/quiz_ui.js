@@ -3,6 +3,7 @@
 var QuizUI = {
 	displayNextComparison: function() {
 		if (quiz.hasEnded()) {
+			console.log('hasEnded');
 			this.displayLeaderboard();
 		} else if (quiz.roundStarting()) {
 			this.displayPlayer();
@@ -56,7 +57,6 @@ var QuizUI = {
 		this.populateById('name1', document.getElementById('name2').innerHTML);
 		this.populateById('image1', document.getElementById('image2').innerHTML);
 		this.populateById('quartermile1', quiz.hiddenqm);
-
 	},
 	clearCar: function(id){
 		this.populateById('name' + id, '' );

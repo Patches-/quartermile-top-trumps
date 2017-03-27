@@ -65,9 +65,11 @@ var QuizUI = {
 		this.populateById('quartermile' + id, '' );
 	},
 	inputHandler: function (argument) {
+		
 		document.onkeydown = checkKey;
 
 		function checkKey(e) {
+
 			e = e || window.event;
 			if (e.keyCode == '38') {
 			    var arrow = 'f';
@@ -81,28 +83,30 @@ var QuizUI = {
 				}
 			}
 			if (arrow){
-				if(!document.getElementById('quiz-header').classList.contains('player')){
+				if(document.getElementById('leaderboard').classList.contains('hide') && !document.getElementById('quiz-header').classList.contains('player')){
 					quiz.answer(arrow);
 				}
 			}
 		}
 	},
 	displayLeaderboard: function() {
-		document.getElementById('compare-row').classList.add('hide');
-		this.populateById('quiz-header', '<h2>Finished!</h2>');
-		this.populateById('quiz-info', '');
-		var lb = document.getElementById('lb-body');
+		var compareRow = document.getElementById('compare-row');
+		if(!compareRow.classList.contains('hide')) {
+			compareRow.classList.add('hide');
+			this.populateById('quiz-header', '<h2>Finished!</h2>');
+			this.populateById('quiz-info', '');
+			var lb = document.getElementById('lb-body');
 
-		for (var i = 0; i < quiz.players.length; i++) {
-			var player = quiz.players[i];
-			console.log(player);
-			var row = lb.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			cell1.innerHTML = player.name;
-			cell2.innerHTML = player.score;
+			for (var i = 0; i < quiz.players.length; i++) {
+				var player = quiz.players[i];
+				console.log(player);
+				var row = lb.insertRow(i);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = player.name;
+				cell2.innerHTML = player.score;
+			}
+			document.getElementById('leaderboard').classList.remove('hide');			
 		}
-		document.getElementById('leaderboard').classList.remove('hide');
-
 	}
 }
